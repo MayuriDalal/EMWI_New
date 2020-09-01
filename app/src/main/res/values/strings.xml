@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">EMWI_New</string>
+
+    <!-- Registration values -->
+    <string name="reg_hint_full_name">Full Name*</string>
+    <string name="reg_hint_mobile">Mobile Number*</string>
+    <string name="reg_hint_email">Email*</string>
+    <string name="reg_hint_dob">Date of Birth</string>
+    <string name="reg_hint_nominee">Nominee Name*</string>
+    <string name="reg_hint_country">Country</string>
+    <string name="reg_hint_state">State</string>
+    <string name="reg_hint_city">City</string>
+    <string name="reg_hint_address">Address</string>
+    <string name="reg_hint_pincode">Pin Code</string>
+    <string name="reg_hint_sponspor_id">Sponsor Id*</string>
+    <string name="reg_hint_spons_id">Sponsor Id</string>
+    <string name="reg_hint_company_id">Company Id</string>
+    <string name="reg_hint_area_dist">Area Distributor</string>
+    <string name="reg_hint_sponsor_name">Sponsor Name*</string>
+    <string name="reg_hint_password">Password*</string>
+    <string name="reg_hint_conf_password">Confirm Password*</string>
+    <string name="reg_hint_position">Position</string>
+    <string name="reg_hint_pancard_no">PAN Card No.*</string>
+    <string name="reg_hint_pancard_attach">PAN Card Attachment*</string>
+    <string name="reg_hint_aadhar_card_no">Aadhar Card No.*</string>
+    <string name="reg_hint_aadhar_attach">Aadhar Card Attachment*</string>
+    <string name="reg_hint_note">Note: Image size is limited to not greater than 1MB.</string>
+    <string name="reg_hint_terms_cond">I Accept Terms &amp; Conditions</string>
+    <string name="reg_hint_login">Already have an account?</string>
+    <string name="reg_hint_date">dd-mm-yyyy</string>
+    <string name="login">Login</string>
+    <string name="btn_send_otp">SEND OTP</string>
+    <string name="btn_submit">SUBMIT</string>
+    <string name="title_register">CREATE ACCOUNT</string>
+    <string name="short_title_register">Sponsor Information</string>
+
+    <!-- Reset Password values -->
+    <string name="title_reset_password">RESET PASSWORD</string>
+    <string name="user_id">UserId</string>
+    <string name="user_note">Enter Your User Id below and we will send you \n \t reset instructions on mobile</string>
 </resources>
