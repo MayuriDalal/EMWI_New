@@ -44,7 +44,7 @@ public class ViewUtils {
     // Dialog dialog = ViewUtils.getProgressBar(MainActivity.this);
     // dialog.dismiss();
 
-    public void showMessage(Context context, String message) {
+    public static void showMessage(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

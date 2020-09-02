@@ -37,5 +37,19 @@
     <!-- Reset Password values -->
     <string name="title_reset_password">RESET PASSWORD</string>
     <string name="user_id">UserId</string>
-    <string name="user_note">Enter Your User Id below and we will send you \n \t reset instructions on mobile</string>
+    <string name="user_note">Enter Your User Id below and we will send you \n reset instructions on mobile</string>
+
+    <!-- Registration User Errors-->
+    <string name="err_full_name">The fullname field is required.</string>
+    <string name="err_nominee_name">The parentname field is required.</string>
+    <string name="err_password">The password field is required.</string>
+    <string name="err_password_length">The password field must be at least 6 characters.</string>
+    <string name="err_pan_photo">The pan photo field is required.</string>
+    <string name="err_pan_no">The pan no field is required.</string>
+    <string name="err_valid_pan_no">The pancard no field format is invalid.</string>
+    <string name="err_conf_password">The Confirm Password field is required.</string>
+    <string name="err_mobile">The mobile field is required.</string>
+    <string name="err_email">The email field is required.</string>
+    <string name="err_valid_email">The email field must be a valid email.</string>
+    <string name="err_sponsor_id">The Sponsor ID field is required.</string>
 </resources>
