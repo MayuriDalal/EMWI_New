@@ -28,17 +28,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:weightSum="1">
+                    >
 
                     <LinearLayout
                         android:id="@+id/layout_logo"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="@dimen/_200sdp"
                         android:orientation="vertical"
                         android:gravity="top"
-                        android:weightSum="1"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight=".09">
+                        >
 
                         <ImageView
                             android:id="@+id/iv_logo"
@@ -61,7 +60,7 @@
                                 android:layout_marginTop="@dimen/dp10"
                                 android:text="@string/title_register"
                                 android:textColor="@color/colorText"
-                                android:textStyle="bold"
+                                android:fontFamily="@font/mont_bold"
                                 android:textSize="@dimen/sp26"/>
 
                             <TextView
@@ -72,7 +71,7 @@
                                 android:layout_marginTop="@dimen/dp5"
                                 android:text="@string/short_title_register"
                                 android:textColor="@color/colorText"
-                                android:textStyle="bold"
+                                android:fontFamily="@font/mont_semi_bold"
                                 android:textSize="@dimen/sp14"/>
 
                         </LinearLayout>
@@ -80,11 +79,11 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_marginRight="@dimen/_15sdp"
-                        android:layout_weight=".6">
+                       >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -119,7 +118,7 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_full_name"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="textPersonName"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
@@ -128,7 +127,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -164,16 +163,17 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_mobile"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="number"
                                 android:lines="1"
-                                android:maxLength="50"
+                                android:maxLength="10"
+                                android:digits="0987654312"
                                 android:paddingTop="@dimen/_5sdp"
                                 android:paddingBottom="@dimen/_5sdp"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -218,7 +218,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -263,14 +263,14 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_horizontal"
                                 android:text="@string/reg_hint_date"
-                                android:textStyle="normal"
+                                android:fontFamily="@font/mont_reg"
                                 android:gravity="center_vertical"
                                 android:paddingEnd="@dimen/_10sdp"
                                 android:textColor="@android:color/darker_gray"
@@ -310,7 +310,7 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_nominee"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="textPersonName"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
@@ -319,7 +319,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -366,7 +366,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -413,7 +413,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -460,7 +460,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -496,7 +496,7 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_address"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="textPostalAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
@@ -505,7 +505,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -541,16 +541,17 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_pincode"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="number"
+                                android:digits="0987654321"
                                 android:lines="1"
-                                android:maxLength="50"
+                                android:maxLength="6"
                                 android:paddingTop="@dimen/_5sdp"
                                 android:paddingBottom="@dimen/_5sdp"
                                 android:paddingLeft="@dimen/_10sdp"
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -595,7 +596,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <RadioGroup
@@ -666,7 +667,7 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_sponsor_name"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
+                                android:inputType="textPersonName"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
@@ -675,7 +676,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -720,7 +721,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -767,7 +768,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -812,7 +813,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
 
                             <RadioGroup
                                 android:id="@+id/grp_position"
@@ -885,7 +886,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -910,7 +911,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_pan_card_attachment"
                                 android:text="@={viewmodel.username}"
                                 android:layout_width="0dp"
@@ -920,8 +921,6 @@
                                 android:ems="10"
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_pancard_attach"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:drawableRight="@drawable/ic_attachment"
@@ -932,12 +931,13 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/mont_semi_bold"
                             android:text="@string/reg_hint_note"
                             android:textColor="@color/colorWhite" />
 
@@ -983,7 +983,7 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -1008,7 +1008,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_aadhar_card_attachment"
                                 android:text="@={viewmodel.username}"
                                 android:layout_width="0dp"
@@ -1018,8 +1018,6 @@
                                 android:ems="10"
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_aadhar_attach"
-                                android:imeOptions="actionDone"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:drawableRight="@drawable/ic_attachment"
@@ -1030,13 +1028,14 @@
                                 android:textColor="@android:color/black"
                                 android:textColorHint="@android:color/black"
                                 android:textSize="@dimen/sp16"
-                                android:textStyle="normal"/>
+                                android:fontFamily="@font/mont_reg"/>
                         </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/mont_semi_bold"
                             android:text="@string/reg_hint_note"
                             android:textColor="@color/colorWhite" />
 
@@ -1061,7 +1060,7 @@
                                 android:gravity="center"
                                 android:text="@string/btn_send_otp"
                                 android:textColor="@color/colorWhite"
-                                android:textStyle="bold" />
+                                android:fontFamily="@font/mont_bold" />
                         </LinearLayout>
 
                         <TextView
@@ -1069,7 +1068,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/reg_hint_terms_cond"
-                            android:textStyle="bold"
+                           android:fontFamily="@font/mont_semi_bold"
                             android:textColor="@color/colorWhite" />
 
                         <LinearLayout
@@ -1093,16 +1092,18 @@
                                 android:gravity="center"
                                 android:text="@string/btn_submit"
                                 android:textColor="@color/colorWhite"
-                                android:textStyle="bold" />
+                                android:fontFamily="@font/mont_bold"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
+                            android:layout_marginBottom="@dimen/_20sdp"
                             android:orientation="horizontal">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/mont_semi_bold"
                                 android:layout_gravity="center_horizontal"
                                 android:text="@string/reg_hint_login"
                                 android:textColor="@color/colorWhite" />
