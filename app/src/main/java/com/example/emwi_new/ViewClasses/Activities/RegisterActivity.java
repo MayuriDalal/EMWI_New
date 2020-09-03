@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -31,20 +33,24 @@ import com.example.emwi_new.retrofit.RetrofitUtils;
 import com.example.emwi_new.utils.AppCommon;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterListener, TextWatcher, View.OnFocusChangeListener {
+public class RegisterActivity extends AppCompatActivity implements RegisterListener, TextWatcher, View.OnFocusChangeListener,
+        View.OnClickListener {
 
     EditText tv_fullname,tv_mobile,tv_email,tv_nominee_name,tv_sponsor_id,tv_password,tv_conf_password,tv_pan_card_no,
-    tv_dob, tv_sponsor_name;
+    tv_dob, tv_sponsor_name, tv_state, tv_city;
+    TextView tv_country;
     String country = "IN";
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date;
     RegisterViewModel viewModel;
+    List<Data> countryList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
 
         };
 
-        List<Data> countryList = RetrofitUtils.callCountryApi(this);
+        RetrofitUtils.callCountryApi(this,viewModel.registerListener);
         List<Data> stateList = RetrofitUtils.callStateByCountryApi(this,country);
     }
 
@@ -84,7 +90,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         tv_pan_card_no = (EditText)findViewById(R.id.tv_pan_card_no);
         tv_dob = (EditText)findViewById(R.id.tv_dob);
         tv_sponsor_name = (EditText)findViewById(R.id.tv_sponsor_name);
+        tv_country = (TextView) findViewById(R.id.tv_country);
+        tv_state = (EditText)findViewById(R.id.tv_state);
+        tv_city = (EditText)findViewById(R.id.tv_city);
         tv_mobile.addTextChangedListener(this);
+        tv_country.setOnClickListener(this);
         //tv_sponsor_id.addTextChangedListener(this);
         tv_sponsor_id.setOnFocusChangeListener(this);
     }
@@ -100,6 +110,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         new DatePickerDialog(this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    @Override
+    public void onCountrySuccess(List<Data> items) {
+        countryList = new ArrayList<>();
+        countryList.addAll(items);
     }
 
     @Override
@@ -225,6 +241,46 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
     public void onFocusChange(View view, boolean b) {
         if(view.getId() == R.id.tv_sponsor_id) {
             RetrofitUtils.callCheckUserExistApi(this, tv_sponsor_id.getText().toString(), viewModel.registerListener);
+        }
+    }
+
+    public void showSpinner(String[] items){
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //builder.setTitle("Choose a country");
+        // add a list
+        //String[] animals = {"horse", "cow", "camel", "sheep", "goat"};
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                country = countryList.get(which).getIsoCode();
+            }
+        });
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_country:
+                if(countryList.size() > 0){
+                    String[] coutryArray = new String[countryList.size()];
+                    for (int i=0; i<countryList.size();i++)
+                    {
+                        coutryArray[i] = countryList.get(i).getCountry();
+                    }
+                    showSpinner(coutryArray);
+                }
+
+                break;
+
+            case R.id.tv_state:
+                break;
+
+            case R.id.tv_city:
+                break;
         }
     }
 }

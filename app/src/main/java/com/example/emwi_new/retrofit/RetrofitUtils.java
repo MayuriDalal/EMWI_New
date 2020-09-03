@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class RetrofitUtils {
 
-    public static List<Data> callCountryApi(Context context) {
+    public static void callCountryApi(Context context, RegisterListener listener) {
         List<Data> countryData = new ArrayList<>();
         if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
             AppService apiService = ServiceGenerator.createService(AppService.class);
@@ -39,6 +39,7 @@ public class RetrofitUtils {
                         Log.i("AuthResponse::", new Gson().toJson(countryResponse));
                         if (countryResponse.getCode() == 200) {
                             countryData.addAll(countryResponse.getData());
+                            listener.onCountrySuccess(countryData);
                         } else {
                             Toast.makeText(context, countryResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -56,13 +57,12 @@ public class RetrofitUtils {
                 }
             });
 
-
         } else {
             // no internet
             //dismissProgressBar();
             Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
         }
-        return countryData;
+
     }
 
     public static List<Data> callStateByCountryApi(Context context, String country) {

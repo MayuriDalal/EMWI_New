@@ -347,7 +347,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_country"
                                 android:text="@={viewmodel.country}"
                                 android:layout_width="0dp"
