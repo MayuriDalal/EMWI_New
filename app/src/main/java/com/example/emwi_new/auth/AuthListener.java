@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 public interface AuthListener {
 
      void onStarted();
+     void onSignUp();
      void onSuccess(LiveData<LoginResponseModel> loginResponse);
      void onFailure(String message);
 }

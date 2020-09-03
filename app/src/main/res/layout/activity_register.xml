@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.emwi_new.auth.AuthViewModel" />
+            type="com.example.emwi_new.auth.RegisterViewModel" />
     </data>
 
     <RelativeLayout
@@ -109,7 +109,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_fullname"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.fullname}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -154,7 +154,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_mobile"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.mobile}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -200,7 +200,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_email"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.email}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -245,7 +245,8 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_dob"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.dob}"
+                                android:onClick="@{viewmodel:: onDobSelectClick}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -256,6 +257,8 @@
                                 android:imeOptions="actionNext"
                                 android:inputType="textEmailAddress"
                                 android:lines="1"
+                                android:focusable="false"
+                                android:editable="false"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
                                 android:paddingBottom="@dimen/_5sdp"
@@ -301,7 +304,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_nominee_name"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.nominee_name}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -346,7 +349,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_country"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.country}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -393,7 +396,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_state"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.state}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -440,7 +443,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_city"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.city}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -487,7 +490,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_address"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.address}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -532,7 +535,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_pincode"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.pincode}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -578,7 +581,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_sponsor_id"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.ref_user_id}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -613,6 +616,7 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/radio1"
                                 android:text="@string/reg_hint_spons_id"
+                                android:checked="true"
                                 android:textSize="12sp"
                                 android:buttonTint="@color/colorBlack"/>
 
@@ -658,13 +662,14 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_sponsor_name"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.sponsor_name}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
                                 android:background="@null"
                                 android:ems="10"
                                 android:gravity="center_vertical"
+                                android:editable="false"
                                 android:hint="@string/reg_hint_sponsor_name"
                                 android:imeOptions="actionNext"
                                 android:inputType="textPersonName"
@@ -703,7 +708,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_password"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.password}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -750,7 +755,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_conf_password"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.confirm_password}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -795,7 +800,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_position"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.position}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -831,6 +836,7 @@
                                     android:id="@+id/rd_left"
                                     android:text="Left"
                                     android:textSize="10sp"
+                                    android:checked="true"
                                     android:buttonTint="@color/colorBlack"/>
 
                                 <RadioButton
@@ -868,7 +874,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_pan_card_no"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.pan_no}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -913,7 +919,7 @@
                                 android:background="#ABABAB" />
                             <TextView
                                 android:id="@+id/tv_pan_card_attachment"
-                                android:text="@={viewmodel.username}"
+                                android:onClick="@{viewmodel::onPanSelectClick}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -965,7 +971,7 @@
                                 android:background="#ABABAB" />
                             <EditText
                                 android:id="@+id/tv_aadhar_card"
-                                android:text="@={viewmodel.username}"
+                                android:text="@={viewmodel.aadhar_no}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -1010,7 +1016,7 @@
                                 android:background="#ABABAB" />
                             <TextView
                                 android:id="@+id/tv_aadhar_card_attachment"
-                                android:text="@={viewmodel.username}"
+                                android:onClick="@{viewmodel:: onAadharSelectClick}"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/et_height"
                                 android:layout_weight="1"
@@ -1052,7 +1058,7 @@
 
                             <TextView
                                 android:id="@+id/tv_send_otp"
-                                android:onClick="@{viewmodel::onLoginButtonClick}"
+                                android:onClick="@{viewmodel::onSendOtpButtonClick}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.78"
@@ -1084,7 +1090,7 @@
 
                             <TextView
                                 android:id="@+id/tv_submit"
-                                android:onClick="@{viewmodel::onLoginButtonClick}"
+                                android:onClick="@{viewmodel::onSubmitButtonClick}"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.78"

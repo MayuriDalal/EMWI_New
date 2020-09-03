@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -170,7 +172,7 @@ public class AppCommon {
         editor.apply();
     }
 
-    public void setToken(String token) {
+    public static void setToken(String token) {
         SharedPreferences.Editor editor = mContext.getSharedPreferences(MyPreference.mUserLogin, MODE_PRIVATE).edit();
         editor.putString(MyPreference.TokenValue, token);
         editor.apply();
@@ -201,7 +203,7 @@ public class AppCommon {
         return prefs.getString(MyPreference.PrizmAddress, "");
     }
 
-    public String getToken() {
+    public static String getToken() {
         SharedPreferences prefs = mContext.getSharedPreferences(MyPreference.mUserLogin, MODE_PRIVATE);
         return prefs.getString(MyPreference.TokenValue, "");
     }
@@ -262,6 +264,8 @@ public class AppCommon {
         return prefs.getString(MyPreference.GameToken, "");
     }
 
-
+    public static boolean isInputEmailValid(String email) {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches() ;
+    }
 
 }

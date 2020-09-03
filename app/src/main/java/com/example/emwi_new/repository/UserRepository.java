@@ -45,4 +45,30 @@ public class UserRepository {
         });
         return loginResponse;
     }
+
+    public LiveData<LoginResponseModel> userSendOtp(Map<String, String> sendOtpMap){
+
+        loginResponse = new MutableLiveData<>();
+
+        AppService apiService = ServiceGenerator.createService(AppService.class);
+        apiService.sendOtp(sendOtpMap).enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                if(response.isSuccessful()){
+                    loginResponseModel = response.body();
+                    loginResponse.setValue(loginResponseModel);
+                    // todo: save access token is pending
+                }else {
+                    loginResponseModel = response.body();
+                    loginResponse.setValue(loginResponseModel);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                //Toast.makeText(UserRepository.this.getClass(), "Please check your internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return loginResponse;
+    }
 }

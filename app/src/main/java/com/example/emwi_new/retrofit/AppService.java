@@ -1,6 +1,7 @@
 package com.example.emwi_new.retrofit;
 
 import com.example.emwi_new.model.CountryStateCityModel;
+import com.example.emwi_new.model.responsemodel.CheckUserModel;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.squareup.okhttp.RequestBody;
 
@@ -22,9 +23,19 @@ public interface AppService {
     Call<LoginResponseModel> userLogin(@FieldMap Map<String, String> loginMap);
 
     @GET("getCountry")
-    Call<CountryStateCityModel> GetCountries();
+    Call<CountryStateCityModel> getCountries();
 
-    @POST("user/profile")
-    Call<CountryStateCityModel> updateUserProfile(@Body RequestBody post);
+    @POST("getStateByCountry")
+    Call<CountryStateCityModel> getStateByCountry(@Body Map<String, String> post);
+
+    @FormUrlEncoded
+    @POST("send-registration-otp")
+    Call<LoginResponseModel> sendOtp(@FieldMap Map<String, String> loginMap);
+
+    @POST("checkmobileexist")
+    Call<LoginResponseModel> checkMobileExist(@Body Map<String, String> mobileMap);
+
+    @POST("checkuserexist")
+    Call<CheckUserModel> checkUserExist(@Body Map<String, String> userMap);
 
 }

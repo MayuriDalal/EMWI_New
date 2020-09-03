@@ -37,6 +37,10 @@ public class AuthViewModel extends ViewModel {
         authListener.onSuccess(loginResponse);
     }
 
+    public void onSignUpClick(View view) {
+        authListener.onSignUp();
+    }
+
     public boolean isInputDataValid() {
         return !TextUtils.isEmpty(username) && Patterns.EMAIL_ADDRESS.matcher(username).matches() && password.length() > 5;
     }

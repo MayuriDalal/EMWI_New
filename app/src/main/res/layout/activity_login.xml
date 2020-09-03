@@ -100,7 +100,7 @@
                             android:background="#ABABAB" />
                         <EditText
                             android:id="@+id/tv_email"
-                            android:text="@={viewmodel.user_id}"
+                            android:text="@={viewmodel.username}"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/et_height"
                             android:layout_weight="1"
@@ -245,7 +245,8 @@
                             android:textColor="@color/colorWhite" />
 
                         <TextView
-                            android:id="@+id/tv_login_mobile"
+                            android:id="@+id/tv_signup"
+                            android:onClick="@{viewmodel:: onSignUpClick}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
