@@ -29,11 +29,10 @@ import com.example.emwi_new.auth.AuthViewModel;
 import com.example.emwi_new.auth.RegisterListener;
 import com.example.emwi_new.auth.RegisterViewModel;
 import com.example.emwi_new.base.BaseActivity;
-import com.example.emwi_new.databinding.ActivityLoginBinding;
 import com.example.emwi_new.databinding.ActivityRegisterBinding;
 import com.example.emwi_new.model.Data;
 import com.example.emwi_new.model.responsemodel.CheckUserDataModel;
-import com.example.emwi_new.model.responsemodel.Datum;
+import com.example.emwi_new.model.responsemodel.StateData;
 import com.example.emwi_new.retrofit.RetrofitUtils;
 import com.example.emwi_new.utils.AppCommon;
 
@@ -56,8 +55,8 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     DatePickerDialog.OnDateSetListener date;
     RegisterViewModel viewModel;
     List<Data> countryList;
-    List<Datum> stateList;
-    List<Datum> cityList;
+    List<StateData> stateList;
+    List<StateData> cityList;
     String[] countryArray;
     String[] stateArray;
     String[] cityArray;
@@ -137,10 +136,11 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                     if (countryArray[i].equals("India")) {
                         tv_country.setText(countryArray[i]);
                         tv_state.setText("Select State");
+                        showProgressDialog(progressBarMessage);
+                        RetrofitUtils.callStateByCountryApi(this,countryList.get(i).getIsoCode(), viewModel.registerListener);
                     }
                 }
-                showProgressDialog(progressBarMessage);
-                RetrofitUtils.callStateByCountryApi(this,tv_country.getText().toString(), viewModel.registerListener);
+
             }
         }catch (Exception e){
             Log.e("ERROR",e.getLocalizedMessage());
@@ -150,7 +150,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     }
 
     @Override
-    public void onStateSuccess(List<Datum> items) {
+    public void onStateSuccess(List<StateData> items) {
         try{
             stateList = new ArrayList<>();
             stateList.addAll(items);
@@ -160,8 +160,8 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                     stateArray[i] = stateList.get(i).getName();
                         tv_state.setText("Select State");
                 }
-                showProgressDialog(progressBarMessage);
-                RetrofitUtils.callCityByStateApi(this,tv_state.getText().toString(), viewModel.registerListener);
+               // showProgressDialog(progressBarMessage);
+                //RetrofitUtils.callCityByStateApi(this,tv_state.getText().toString(), viewModel.registerListener);
             }
         }catch (Exception e){
             Log.e("ERROR",e.getLocalizedMessage());
@@ -171,7 +171,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     }
 
     @Override
-    public void onCitySuccess(List<Datum> items) {
+    public void onCitySuccess(List<StateData> items) {
         try{
             cityList = new ArrayList<>();
             cityList.addAll(items);
@@ -334,7 +334,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                     country = countryList.get(which).getIsoCode();
                     tv_country.setText(countryList.get(which).getCountry());
                     showProgressDialog(progressBarMessage);
-                    RetrofitUtils.callStateByCountryApi(RegisterActivity.this, tv_country.getText().toString(), viewModel.registerListener);
+                    RetrofitUtils.callStateByCountryApi(RegisterActivity.this, countryList.get(which).getIsoCode(), viewModel.registerListener);
                 }else if(type.equals("state")){
                     tv_state.setText(stateList.get(which).getName());
                     showProgressDialog(progressBarMessage);

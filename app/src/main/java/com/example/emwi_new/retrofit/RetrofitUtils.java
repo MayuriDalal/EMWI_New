@@ -8,9 +8,9 @@ import com.example.emwi_new.auth.RegisterListener;
 import com.example.emwi_new.model.CountryModel;
 import com.example.emwi_new.model.Data;
 import com.example.emwi_new.model.responsemodel.CheckUserModel;
-import com.example.emwi_new.model.responsemodel.Datum;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.model.responsemodel.StateCityModel;
+import com.example.emwi_new.model.responsemodel.StateData;
 import com.example.emwi_new.utils.AppCommon;
 import com.google.gson.Gson;
 
@@ -67,7 +67,7 @@ public class RetrofitUtils {
     }
 
     public static void callStateByCountryApi(Context context, String country, RegisterListener listener) {
-        List<Datum> stateData = new ArrayList<>();
+        List<StateData> stateData = new ArrayList<>();
         Map<String, String> stateMap = new HashMap<>();
         stateMap.put("country", country);
         if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
@@ -110,7 +110,7 @@ public class RetrofitUtils {
     }
 
     public static void callCityByStateApi(Context context, String state, RegisterListener listener) {
-        List<Datum> cityData = new ArrayList<>();
+        List<StateData> cityData = new ArrayList<>();
         Map<String, String> cityMap = new HashMap<>();
         cityMap.put("state", state);
         if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
