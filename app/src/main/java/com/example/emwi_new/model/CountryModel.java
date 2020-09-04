@@ -1,33 +1,34 @@
 
 package com.example.emwi_new.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 
 public class CountryModel {
 
     @Expose
-    private Long code;
+    private int code;
     @Expose
-    private List<Data> data;
+    private ArrayList<Data> data;
     @Expose
     private String message;
     @Expose
     private String status;
 
-    public Long getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public List<Data> getData() {
+    public ArrayList<Data> getData() {
         return data;
     }
 
-    public void setData(List<Data> data) {
+    public void setData(ArrayList<Data> data) {
         this.data = data;
     }
 
@@ -46,5 +47,4 @@ public class CountryModel {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }
