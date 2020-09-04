@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,19 +17,23 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.emwi_new.R;
 import com.example.emwi_new.auth.AuthViewModel;
 import com.example.emwi_new.auth.RegisterListener;
 import com.example.emwi_new.auth.RegisterViewModel;
+import com.example.emwi_new.base.BaseActivity;
 import com.example.emwi_new.databinding.ActivityLoginBinding;
 import com.example.emwi_new.databinding.ActivityRegisterBinding;
 import com.example.emwi_new.model.Data;
 import com.example.emwi_new.model.responsemodel.CheckUserDataModel;
+import com.example.emwi_new.model.responsemodel.Datum;
 import com.example.emwi_new.retrofit.RetrofitUtils;
 import com.example.emwi_new.utils.AppCommon;
 
@@ -40,17 +45,23 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterListener, TextWatcher, View.OnFocusChangeListener,
+public class RegisterActivity extends BaseActivity implements RegisterListener, TextWatcher, View.OnFocusChangeListener,
         View.OnClickListener {
 
     EditText tv_fullname,tv_mobile,tv_email,tv_nominee_name,tv_sponsor_id,tv_password,tv_conf_password,tv_pan_card_no,
-    tv_dob, tv_sponsor_name, tv_state, tv_city;
-    TextView tv_country;
+    tv_dob, tv_sponsor_name;
+    TextView tv_country, tv_state, tv_city;
     String country = "IN";
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date;
     RegisterViewModel viewModel;
     List<Data> countryList;
+    List<Datum> stateList;
+    List<Datum> cityList;
+    String[] countryArray;
+    String[] stateArray;
+    String[] cityArray;
+    String progressBarMessage = "Please wait...";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +86,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
 
         };
 
+        showProgressDialog(progressBarMessage);
         RetrofitUtils.callCountryApi(this,viewModel.registerListener);
-        List<Data> stateList = RetrofitUtils.callStateByCountryApi(this,country);
     }
 
     private void initViews() {
@@ -91,10 +102,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         tv_dob = (EditText)findViewById(R.id.tv_dob);
         tv_sponsor_name = (EditText)findViewById(R.id.tv_sponsor_name);
         tv_country = (TextView) findViewById(R.id.tv_country);
-        tv_state = (EditText)findViewById(R.id.tv_state);
-        tv_city = (EditText)findViewById(R.id.tv_city);
+        tv_state = (TextView)findViewById(R.id.tv_state);
+        tv_city = (TextView)findViewById(R.id.tv_city);
         tv_mobile.addTextChangedListener(this);
         tv_country.setOnClickListener(this);
+        tv_state.setOnClickListener(this);
+        tv_city.setOnClickListener(this);
         //tv_sponsor_id.addTextChangedListener(this);
         tv_sponsor_id.setOnFocusChangeListener(this);
     }
@@ -114,8 +127,66 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
 
     @Override
     public void onCountrySuccess(List<Data> items) {
-        countryList = new ArrayList<>();
-        countryList.addAll(items);
+        try {
+            countryList = new ArrayList<>();
+            countryList.addAll(items);
+            if (countryList.size() > 0) {
+                countryArray = new String[countryList.size()];
+                for (int i = 0; i < countryList.size(); i++) {
+                    countryArray[i] = countryList.get(i).getCountry();
+                    if (countryArray[i].equals("India")) {
+                        tv_country.setText(countryArray[i]);
+                        tv_state.setText("Select State");
+                    }
+                }
+                showProgressDialog(progressBarMessage);
+                RetrofitUtils.callStateByCountryApi(this,tv_country.getText().toString(), viewModel.registerListener);
+            }
+        }catch (Exception e){
+            Log.e("ERROR",e.getLocalizedMessage());
+        }finally {
+            hideProgressDialog();
+        }
+    }
+
+    @Override
+    public void onStateSuccess(List<Datum> items) {
+        try{
+            stateList = new ArrayList<>();
+            stateList.addAll(items);
+            if (stateList.size() > 0) {
+                stateArray = new String[stateList.size()];
+                for (int i = 0; i < stateList.size(); i++) {
+                    stateArray[i] = stateList.get(i).getName();
+                        tv_state.setText("Select State");
+                }
+                showProgressDialog(progressBarMessage);
+                RetrofitUtils.callCityByStateApi(this,tv_state.getText().toString(), viewModel.registerListener);
+            }
+        }catch (Exception e){
+            Log.e("ERROR",e.getLocalizedMessage());
+        }finally {
+            hideProgressDialog();
+        }
+    }
+
+    @Override
+    public void onCitySuccess(List<Datum> items) {
+        try{
+            cityList = new ArrayList<>();
+            cityList.addAll(items);
+            if (cityList.size() > 0) {
+                cityArray = new String[cityList.size()];
+                for (int i = 0; i < cityList.size(); i++) {
+                    cityArray[i] = cityList.get(i).getName();
+                    tv_state.setText("Select State");
+                }
+            }
+        }catch (Exception e){
+            Log.e("ERROR",e.getLocalizedMessage());
+        }finally {
+            hideProgressDialog();
+        }
     }
 
     @Override
@@ -132,6 +203,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         if(dataModel != null){
             tv_sponsor_name.setText(dataModel.getFullname());
         }
+    }
+
+    @Override
+    public void onApiError(String message) {
+        hideProgressDialog();
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 
     private boolean validation() {
@@ -244,16 +321,28 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
         }
     }
 
-    public void showSpinner(String[] items){
+    public void showSpinner(String[] items, String type){
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //builder.setTitle("Choose a country");
+        builder.setTitle("Select a country");
         // add a list
         //String[] animals = {"horse", "cow", "camel", "sheep", "goat"};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                country = countryList.get(which).getIsoCode();
+                if(type.equals("country")) {
+                    country = countryList.get(which).getIsoCode();
+                    tv_country.setText(countryList.get(which).getCountry());
+                    showProgressDialog(progressBarMessage);
+                    RetrofitUtils.callStateByCountryApi(RegisterActivity.this, tv_country.getText().toString(), viewModel.registerListener);
+                }else if(type.equals("state")){
+                    tv_state.setText(stateList.get(which).getName());
+                    showProgressDialog(progressBarMessage);
+                    RetrofitUtils.callCityByStateApi(RegisterActivity.this, tv_state.getText().toString(), viewModel.registerListener);
+
+                }else {
+                    tv_city.setText(cityList.get(which).getName());
+                }
             }
         });
         // create and show the alert dialog
@@ -265,22 +354,19 @@ public class RegisterActivity extends AppCompatActivity implements RegisterListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_country:
-                if(countryList.size() > 0){
-                    String[] coutryArray = new String[countryList.size()];
-                    for (int i=0; i<countryList.size();i++)
-                    {
-                        coutryArray[i] = countryList.get(i).getCountry();
-                    }
-                    showSpinner(coutryArray);
-                }
-
+                if(countryList != null)
+                    showSpinner(countryArray,"country");
                 break;
 
             case R.id.tv_state:
+                if(stateList != null)
+                    showSpinner(stateArray,"state");
                 break;
 
             case R.id.tv_city:
-                break;
+                if(cityList != null)
+                    showSpinner(cityArray,"city");
+
         }
     }
 }

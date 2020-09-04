@@ -358,7 +358,6 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_country"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:drawableRight="@drawable/ic_down_arrow"
@@ -394,7 +393,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_state"
                                 android:text="@={viewmodel.state}"
                                 android:layout_width="0dp"
@@ -405,7 +404,6 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_state"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:drawableRight="@drawable/ic_down_arrow"
@@ -441,7 +439,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_city"
                                 android:text="@={viewmodel.city}"
                                 android:layout_width="0dp"
@@ -452,7 +450,6 @@
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_city"
                                 android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:drawableRight="@drawable/ic_down_arrow"
@@ -1125,7 +1122,13 @@
                                 android:textColor="@color/colorWhite" />
                         </LinearLayout>
                     </LinearLayout>
-
+                    <ProgressBar
+                        android:id="@+id/progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:visibility="visible">
+                    </ProgressBar>
                 </LinearLayout>
         </ScrollView>
     </RelativeLayout>

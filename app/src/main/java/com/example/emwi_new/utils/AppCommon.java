@@ -17,6 +17,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 
 
 import com.example.emwi_new.R;
@@ -29,6 +30,7 @@ public class AppCommon {
 
     static Context mContext;
     MediaPlayer mediaPlayer = null;
+    public static ProgressBar progressBar;
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     public static final int ENABLE_LOCATION_SERVICES_REQUEST_CODE = 205;
 
@@ -268,4 +270,9 @@ public class AppCommon {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches() ;
     }
 
+    public static void showProgressBar(Context context, boolean isCancellable, String message){
+       progressBar = new ProgressBar(context);
+       progressBar.setIndeterminate(true);
+       progressBar.setVisibility(View.VISIBLE);
+    }
 }

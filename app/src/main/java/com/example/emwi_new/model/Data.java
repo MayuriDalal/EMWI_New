@@ -10,7 +10,7 @@ public class Data {
     private Long code;
     @Expose
     private String country;
-    @Expose
+    @SerializedName("name")
     private String name;
     @Expose
     private Long id;

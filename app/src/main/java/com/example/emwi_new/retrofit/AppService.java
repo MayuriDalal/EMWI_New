@@ -1,9 +1,9 @@
 package com.example.emwi_new.retrofit;
 
-import com.example.emwi_new.model.CountryStateCityModel;
+import com.example.emwi_new.model.CountryModel;
 import com.example.emwi_new.model.responsemodel.CheckUserModel;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
-import com.squareup.okhttp.RequestBody;
+import com.example.emwi_new.model.responsemodel.StateCityModel;
 
 import java.util.Map;
 
@@ -23,10 +23,13 @@ public interface AppService {
     Call<LoginResponseModel> userLogin(@FieldMap Map<String, String> loginMap);
 
     @GET("getCountry")
-    Call<CountryStateCityModel> getCountries();
+    Call<CountryModel> getCountries();
 
     @POST("getStateByCountry")
-    Call<CountryStateCityModel> getStateByCountry(@Body Map<String, String> post);
+    Call<StateCityModel> getStateByCountry(@Body Map<String, String> post);
+
+    @POST("getCityByState")
+    Call<StateCityModel> getCityByState(@Body Map<String, String> post);
 
     @FormUrlEncoded
     @POST("send-registration-otp")

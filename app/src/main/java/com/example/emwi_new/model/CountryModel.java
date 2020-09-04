@@ -4,7 +4,7 @@ package com.example.emwi_new.model;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 
-public class CountryStateCityModel {
+public class CountryModel {
 
     @Expose
     private Long code;

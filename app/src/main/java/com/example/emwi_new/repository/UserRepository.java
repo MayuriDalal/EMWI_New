@@ -57,7 +57,6 @@ public class UserRepository {
                 if(response.isSuccessful()){
                     loginResponseModel = response.body();
                     loginResponse.setValue(loginResponseModel);
-                    // todo: save access token is pending
                 }else {
                     loginResponseModel = response.body();
                     loginResponse.setValue(loginResponseModel);

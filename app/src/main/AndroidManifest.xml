@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewClasses.Activities.RegisterActivity"></activity>
-        <activity android:name=".ViewClasses.Activities.LoginActivity"></activity>
+        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".ViewClasses.Activities.RegisterActivity" />
+        <activity android:name=".ViewClasses.Activities.LoginActivity" />
         <activity
             android:name=".ViewClasses.Activities.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden">

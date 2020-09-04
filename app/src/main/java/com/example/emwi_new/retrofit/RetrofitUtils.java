@@ -4,13 +4,13 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.emwi_new.ViewClasses.Activities.RegisterActivity;
 import com.example.emwi_new.auth.RegisterListener;
-import com.example.emwi_new.model.CountryStateCityModel;
+import com.example.emwi_new.model.CountryModel;
 import com.example.emwi_new.model.Data;
-import com.example.emwi_new.model.responsemodel.CheckUserDataModel;
 import com.example.emwi_new.model.responsemodel.CheckUserModel;
+import com.example.emwi_new.model.responsemodel.Datum;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
+import com.example.emwi_new.model.responsemodel.StateCityModel;
 import com.example.emwi_new.utils.AppCommon;
 import com.google.gson.Gson;
 
@@ -34,7 +34,7 @@ public class RetrofitUtils {
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
-                    CountryStateCityModel countryResponse = (CountryStateCityModel) response.body();
+                    CountryModel countryResponse = (CountryModel) response.body();
                     if (countryResponse != null) {
                         Log.i("AuthResponse::", new Gson().toJson(countryResponse));
                         if (countryResponse.getCode() == 200) {
@@ -44,13 +44,14 @@ public class RetrofitUtils {
                             Toast.makeText(context, countryResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
+                        listener.onApiError(response.message());
                         //AppCommon.getInstance(context).showDialog(JoinMegaContest.this, "Server Error");
                     }
                 }
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
-                    //dismissProgressBar();
+                    listener.onApiError(t.getLocalizedMessage());
                     //AppCommon.getInstance(context.clearNonTouchableFlags(JoinMegaContest.this);
                     // loaderView.setVisibility(View.GONE);
                     //Toast.makeText(JoinMegaContest.this, "Please check your internet", Toast.LENGTH_SHORT).show();
@@ -65,8 +66,8 @@ public class RetrofitUtils {
 
     }
 
-    public static List<Data> callStateByCountryApi(Context context, String country) {
-        List<Data> stateData = new ArrayList<>();
+    public static void callStateByCountryApi(Context context, String country, RegisterListener listener) {
+        List<Datum> stateData = new ArrayList<>();
         Map<String, String> stateMap = new HashMap<>();
         stateMap.put("country", country);
         if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
@@ -76,21 +77,24 @@ public class RetrofitUtils {
             call.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
-                    CountryStateCityModel stateResponse = (CountryStateCityModel) response.body();
+                    StateCityModel stateResponse = (StateCityModel) response.body();
                     if (stateResponse != null) {
                         Log.i("AuthResponse::", new Gson().toJson(stateResponse));
                         if (stateResponse.getCode() == 200) {
                             stateData.addAll(stateResponse.getData());
+                            listener.onStateSuccess(stateData);
                         } else {
                             Toast.makeText(context, stateResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
+                        listener.onApiError(response.message());
                         //AppCommon.getInstance(context).showDialog(JoinMegaContest.this, "Server Error");
                     }
                 }
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
+                    listener.onApiError(t.getLocalizedMessage());
                     //dismissProgressBar();
                     //AppCommon.getInstance(context.clearNonTouchableFlags(JoinMegaContest.this);
                     // loaderView.setVisibility(View.GONE);
@@ -103,7 +107,49 @@ public class RetrofitUtils {
             //dismissProgressBar();
             Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
         }
-        return stateData;
+    }
+
+    public static void callCityByStateApi(Context context, String state, RegisterListener listener) {
+        List<Datum> cityData = new ArrayList<>();
+        Map<String, String> cityMap = new HashMap<>();
+        cityMap.put("state", state);
+        if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
+            AppService apiService = ServiceGenerator.createService(AppService.class);
+            //dismissProgressBar();
+            Call call = apiService.getCityByState(cityMap);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    StateCityModel cityResponse = (StateCityModel) response.body();
+                    if (cityResponse != null) {
+                        Log.i("AuthResponse::", new Gson().toJson(cityResponse));
+                        if (cityResponse.getCode() == 200) {
+                            cityData.addAll(cityResponse.getData());
+                            listener.onCitySuccess(cityData);
+                        } else {
+                            Toast.makeText(context, cityResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        listener.onApiError(response.message());
+                        //AppCommon.getInstance(context).showDialog(JoinMegaContest.this, "Server Error");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    listener.onApiError(t.getLocalizedMessage());
+                    //dismissProgressBar();
+                    //AppCommon.getInstance(context.clearNonTouchableFlags(JoinMegaContest.this);
+                    // loaderView.setVisibility(View.GONE);
+                    //Toast.makeText(JoinMegaContest.this, "Please check your internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else {
+            // no internet
+            //dismissProgressBar();
+            Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static void callCheckMobileExistApi(Context context, String mobile) {
