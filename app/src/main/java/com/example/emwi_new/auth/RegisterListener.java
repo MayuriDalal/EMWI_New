@@ -14,5 +14,6 @@ public interface RegisterListener {
     void onCitySuccess(List<Datum> items);
     boolean onSendOtp();
     void onCheckUserSuccess(CheckUserDataModel dataModel);
+    void onCheckPanSuccess(String message);
     void onApiError(String message);
 }

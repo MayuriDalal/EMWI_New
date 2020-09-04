@@ -230,4 +230,44 @@ public class RetrofitUtils {
             Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public static void callPanExistApi(Context context, String pan, RegisterListener listener) {
+        Map<String, String> panMap = new HashMap<>();
+        panMap.put("pan", pan);
+        if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
+            AppService apiService = ServiceGenerator.createService(AppService.class);
+            //dismissProgressBar();
+            Call call = apiService.checkPanExist(panMap);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    LoginResponseModel panResponse = (LoginResponseModel) response.body();
+                    if (panResponse != null) {
+                        Log.i("AuthResponse::", new Gson().toJson(panResponse));
+                        if (panResponse.getCode() == 200) {
+                            listener.onCheckPanSuccess(panResponse.getMessage());
+                            Toast.makeText(context, panResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, panResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(context, panResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    //dismissProgressBar();
+                    //AppCommon.getInstance(context.clearNonTouchableFlags(JoinMegaContest.this);
+                    // loaderView.setVisibility(View.GONE);
+                    Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else {
+            // no internet
+            //dismissProgressBar();
+            Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -38,6 +38,9 @@ public interface AppService {
     @POST("checkmobileexist")
     Call<LoginResponseModel> checkMobileExist(@Body Map<String, String> mobileMap);
 
+    @POST("checkpanexist")
+    Call<LoginResponseModel> checkPanExist(@Body Map<String, String> panMap);
+
     @POST("checkuserexist")
     Call<CheckUserModel> checkUserExist(@Body Map<String, String> userMap);
 

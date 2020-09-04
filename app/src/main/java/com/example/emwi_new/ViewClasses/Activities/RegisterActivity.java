@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +64,9 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     String[] stateArray;
     String[] cityArray;
     String progressBarMessage = "Please wait...";
+    String positionValue = "";
+    RadioGroup radioGroupOne, radioGroupTwo;
+    RadioButton rdSponsorID, rdCompanyName, rdDistributor, rdLeft, rdRight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +109,17 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         tv_country = (TextView) findViewById(R.id.tv_country);
         tv_state = (TextView)findViewById(R.id.tv_state);
         tv_city = (TextView)findViewById(R.id.tv_city);
+        radioGroupOne = (RadioGroup) findViewById(R.id.grp_position);
+        radioGroupTwo = (RadioGroup)findViewById(R.id.groupradio);
+        rdSponsorID = (RadioButton) findViewById(R.id.radio1);
+        rdCompanyName = (RadioButton) findViewById(R.id.radio2);
+        rdDistributor = (RadioButton) findViewById(R.id.radio3);
+        rdRight = (RadioButton) findViewById(R.id.rd_right);
+        rdLeft = (RadioButton) findViewById(R.id.rd_left);
         tv_mobile.addTextChangedListener(this);
         tv_country.setOnClickListener(this);
         tv_state.setOnClickListener(this);
         tv_city.setOnClickListener(this);
-        //tv_sponsor_id.addTextChangedListener(this);
         tv_sponsor_id.setOnFocusChangeListener(this);
     }
 
@@ -203,6 +214,11 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         if(dataModel != null){
             tv_sponsor_name.setText(dataModel.getFullname());
         }
+    }
+
+    @Override
+    public void onCheckPanSuccess(String message) {
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -318,6 +334,8 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     public void onFocusChange(View view, boolean b) {
         if(view.getId() == R.id.tv_sponsor_id) {
             RetrofitUtils.callCheckUserExistApi(this, tv_sponsor_id.getText().toString(), viewModel.registerListener);
+        }else if(view.getId() == R.id.tv_pan_card_no){
+            RetrofitUtils.callPanExistApi(this, tv_pan_card_no.getText().toString(), viewModel.registerListener);
         }
     }
 
