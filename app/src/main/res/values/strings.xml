@@ -52,4 +52,9 @@
     <string name="err_email">The email field is required.</string>
     <string name="err_valid_email">The email field must be a valid email.</string>
     <string name="err_sponsor_id">The Sponsor ID field is required.</string>
+    <string name="bonzanaTimer">Bonaza Timer</string>
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
 </resources>
