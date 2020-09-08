@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".base.BaseActivity"></activity>
+        <activity
+            android:name=".ViewClasses.Activities.NavigationDrawerActivity"
+            android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".base.BaseActivity" />
         <activity android:name=".ViewClasses.Activities.RegisterActivity" />
         <activity android:name=".ViewClasses.Activities.LoginActivity" />
         <activity

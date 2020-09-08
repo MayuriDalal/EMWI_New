@@ -7,6 +7,7 @@ import com.example.emwi_new.model.responsemodel.StateCityModel;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
@@ -43,5 +44,11 @@ public interface AppService {
 
     @POST("checkuserexist")
     Call<CheckUserModel> checkUserExist(@Body Map<String, String> userMap);
+
+    @GET("getAdminId")
+    Call<CheckUserModel> getAdminId();
+
+    @POST("register")
+    Call<LoginResponseModel> userRegister(@Body RequestBody post);
 
 }

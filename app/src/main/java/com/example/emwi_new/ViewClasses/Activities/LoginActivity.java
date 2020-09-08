@@ -48,6 +48,11 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
     }
 
     @Override
+    public void onLogin() {
+
+    }
+
+    @Override
     public void onSuccess(LiveData<LoginResponseModel> loginResponse) {
         loginResponse.observe(this, new Observer<LoginResponseModel>() {
             @Override
@@ -55,6 +60,9 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
                 //save access token
                 AppCommon.getInstance(LoginActivity.this);
                 AppCommon.setToken(loginResponse.getValue().getData().getAccessToken());
+                Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });

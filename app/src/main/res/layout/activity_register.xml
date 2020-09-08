@@ -795,7 +795,7 @@
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:background="#ABABAB" />
-                            <EditText
+                            <TextView
                                 android:id="@+id/tv_position"
                                 android:text="@={viewmodel.position}"
                                 android:layout_width="0dp"
@@ -805,8 +805,6 @@
                                 android:ems="10"
                                 android:gravity="center_vertical"
                                 android:hint="@string/reg_hint_position"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
                                 android:lines="1"
                                 android:maxLength="50"
                                 android:paddingTop="@dimen/_5sdp"
@@ -1075,6 +1073,37 @@
                             android:textColor="@color/colorWhite" />
 
                         <LinearLayout
+                            android:id="@+id/ll_enter_otp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/reg_et_height"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/text_input_bg"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/tv_enter_otp"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/et_height"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="center_vertical"
+                                android:hint="@string/reg_hint_otp"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:lines="1"
+                                android:maxLength="50"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:paddingLeft="@dimen/_10sdp"
+                                android:textColor="@android:color/black"
+                                android:textColorHint="@android:color/black"
+                                android:textSize="@dimen/sp16"
+                                android:fontFamily="@font/mont_reg"/>
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/button_height"
                             android:layout_marginStart="@dimen/dp15"
@@ -1122,13 +1151,6 @@
                                 android:textColor="@color/colorWhite" />
                         </LinearLayout>
                     </LinearLayout>
-                    <ProgressBar
-                        android:id="@+id/progressbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:visibility="visible">
-                    </ProgressBar>
                 </LinearLayout>
         </ScrollView>
     </RelativeLayout>

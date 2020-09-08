@@ -8,6 +8,7 @@ public interface AuthListener {
 
      void onStarted();
      void onSignUp();
+     void onLogin();
      void onSuccess(LiveData<LoginResponseModel> loginResponse);
      void onFailure(String message);
 }

@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.example.emwi_new.auth.RegisterListener;
 import com.example.emwi_new.model.CountryModel;
 import com.example.emwi_new.model.Data;
+import com.example.emwi_new.model.responsemodel.CheckUserDataModel;
 import com.example.emwi_new.model.responsemodel.CheckUserModel;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.model.responsemodel.StateCityModel;
@@ -269,5 +270,44 @@ public class RetrofitUtils {
             //dismissProgressBar();
             Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void callGetAdminId(Context context, RegisterListener listener) {
+        if (AppCommon.getInstance(context).isConnectingToInternet(context)) {
+            AppService apiService = ServiceGenerator.createService(AppService.class);
+            //dismissProgressBar();
+            Call call = apiService.getAdminId();
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    CheckUserModel getAdminResponse = (CheckUserModel) response.body();
+                    if (getAdminResponse != null) {
+                        Log.i("AuthResponse::", new Gson().toJson(getAdminResponse));
+                        if (getAdminResponse.getCode() == 200) {
+                            listener.onGetAdminIdSuccess(getAdminResponse.getData());
+                        } else {
+                            Toast.makeText(context, getAdminResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        listener.onApiError(response.message());
+                        //AppCommon.getInstance(context).showDialog(JoinMegaContest.this, "Server Error");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    listener.onApiError(t.getLocalizedMessage());
+                    //AppCommon.getInstance(context.clearNonTouchableFlags(JoinMegaContest.this);
+                    // loaderView.setVisibility(View.GONE);
+                    //Toast.makeText(JoinMegaContest.this, "Please check your internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else {
+            // no internet
+            //dismissProgressBar();
+            Toast.makeText(context, "Please check your internet", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

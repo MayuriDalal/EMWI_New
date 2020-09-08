@@ -2,7 +2,11 @@ package com.example.emwi_new.ViewClasses.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,10 +39,12 @@ import com.example.emwi_new.base.BaseActivity;
 import com.example.emwi_new.databinding.ActivityRegisterBinding;
 import com.example.emwi_new.model.Data;
 import com.example.emwi_new.model.responsemodel.CheckUserDataModel;
+import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.model.responsemodel.StateData;
 import com.example.emwi_new.retrofit.RetrofitUtils;
 import com.example.emwi_new.utils.AppCommon;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,8 +57,9 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         View.OnClickListener {
 
     EditText tv_fullname,tv_mobile,tv_email,tv_nominee_name,tv_sponsor_id,tv_password,tv_conf_password,tv_pan_card_no,
-    tv_dob, tv_sponsor_name;
-    TextView tv_country, tv_state, tv_city;
+    tv_dob, tv_sponsor_name, tv_enter_otp;
+    TextView tv_country, tv_state, tv_city, tv_position,tv_pan_card_attachment,tv_aadhar_card_attachment;
+    LinearLayout ll_enter_otp;
     String country = "IN";
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date;
@@ -63,9 +71,12 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     String[] stateArray;
     String[] cityArray;
     String progressBarMessage = "Please wait...";
-    String positionValue = "";
+    String positionValue = "", type="";
     RadioGroup radioGroupOne, radioGroupTwo;
     RadioButton rdSponsorID, rdCompanyName, rdDistributor, rdLeft, rdRight;
+    File imageFile;
+    Uri imageUri;
+    RequestBody requestFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,11 +116,16 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         tv_pan_card_no = (EditText)findViewById(R.id.tv_pan_card_no);
         tv_dob = (EditText)findViewById(R.id.tv_dob);
         tv_sponsor_name = (EditText)findViewById(R.id.tv_sponsor_name);
+        tv_enter_otp = (EditText)findViewById(R.id.tv_enter_otp);
+        ll_enter_otp = (LinearLayout)findViewById(R.id.ll_enter_otp);
+        tv_pan_card_attachment = (TextView) findViewById(R.id.tv_pan_card_attachment);
+        tv_aadhar_card_attachment = (TextView) findViewById(R.id.tv_aadhar_card_attachment);
         tv_country = (TextView) findViewById(R.id.tv_country);
         tv_state = (TextView)findViewById(R.id.tv_state);
         tv_city = (TextView)findViewById(R.id.tv_city);
-        radioGroupOne = (RadioGroup) findViewById(R.id.grp_position);
-        radioGroupTwo = (RadioGroup)findViewById(R.id.groupradio);
+        tv_position = (TextView)findViewById(R.id.tv_position);
+        radioGroupOne = (RadioGroup) findViewById(R.id.groupradio);
+        radioGroupTwo = (RadioGroup)findViewById(R.id.grp_position);
         rdSponsorID = (RadioButton) findViewById(R.id.radio1);
         rdCompanyName = (RadioButton) findViewById(R.id.radio2);
         rdDistributor = (RadioButton) findViewById(R.id.radio3);
@@ -119,13 +135,22 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         tv_country.setOnClickListener(this);
         tv_state.setOnClickListener(this);
         tv_city.setOnClickListener(this);
+        rdLeft.setOnClickListener(this);
+        rdRight.setOnClickListener(this);
+        rdSponsorID.setOnClickListener(this);
+        rdCompanyName.setOnClickListener(this);
+        rdDistributor.setOnClickListener(this);
         tv_sponsor_id.setOnFocusChangeListener(this);
     }
 
     @Override
-    public void onSelectImage() {
+    public RequestBody onSelectImage(String type) {
+        this.type = type;
         Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto , 1);
+
+
+        return requestFile;
     }
 
     @Override
@@ -190,7 +215,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                 cityArray = new String[cityList.size()];
                 for (int i = 0; i < cityList.size(); i++) {
                     cityArray[i] = cityList.get(i).getName();
-                    tv_state.setText("Select State");
+                    tv_city.setText("Select City");
                 }
             }
         }catch (Exception e){
@@ -202,10 +227,59 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
 
     @Override
     public boolean onSendOtp() {
+        if(validation()) {
+            showProgressDialog(progressBarMessage);
+            return true;
+        }else
+            return false;
+    }
+
+    @Override
+    public boolean onSubmitClick() {
+
         if(validation())
             return true;
         else
             return false;
+    }
+
+    @Override
+    public void onOtpSuccess() {
+        hideProgressDialog();
+        Toast.makeText(getApplicationContext(),"OTP sent to your entered number successfully.",Toast.LENGTH_LONG).show();
+        ll_enter_otp.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public String onCheckOtp() {
+        if(!tv_enter_otp.getText().toString().equalsIgnoreCase("") &&
+                !tv_enter_otp.getText().toString().equalsIgnoreCase(" ")) {
+            showProgressDialog(progressBarMessage);
+            return tv_enter_otp.getText().toString();
+        }else {
+            return "";
+        }
+    }
+
+    @Override
+    public void onVerifyOtpSuccess(LiveData<LoginResponseModel> verifyOtpResponse) {
+        hideProgressDialog();
+        Toast.makeText(getApplicationContext(), "OTP verified successfully.", Toast.LENGTH_LONG).show();
+        verifyOtpResponse.observe(this, new Observer<LoginResponseModel>() {
+            @Override
+            public void onChanged(LoginResponseModel responseModel) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onRegisterSuccess(LoginResponseModel responseModel) {
+        hideProgressDialog();
+        if(responseModel.getCode() == 200) {
+            Toast.makeText(getApplicationContext(), "You have registered successfully.", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     @Override
@@ -214,6 +288,16 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
         if(dataModel != null){
             tv_sponsor_name.setText(dataModel.getFullname());
         }
+    }
+
+    @Override
+    public void onGetAdminIdSuccess(CheckUserDataModel dataModel) {
+        hideProgressDialog();
+        if(dataModel != null) {
+            tv_sponsor_id.setText(dataModel.getUserId());
+            tv_sponsor_name.setText(dataModel.getFullname());
+        }
+
     }
 
     @Override
@@ -236,7 +320,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
             tv_mobile.setError(getText(R.string.err_mobile));
             tv_mobile.setFocusable(true);
             return false;
-        }else if(AppCommon.isInputEmailValid(tv_email.getText().toString())){
+        }else if(!AppCommon.isInputEmailValid(tv_email.getText().toString())){
             tv_email.setError(getText(R.string.err_email));
             tv_email.setFocusable(true);
             return false;
@@ -284,6 +368,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
                         Uri selectedImage = data.getData();
+                        imageUri = selectedImage;
                         String[] filePathColumn = {MediaStore.Images.Media.DATA};
                         if (selectedImage != null) {
                             Cursor cursor = getContentResolver().query(selectedImage,
@@ -293,11 +378,24 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
 
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
+                                imageFile = new File(picturePath);
+                                if(type.equals("pan")) {
+                                    viewModel.pan_photo = imageFile;
+                                    tv_pan_card_attachment.setText(imageFile.getName());
+                                }else {
+                                    viewModel.aadhar_photo = imageFile;
+                                    tv_aadhar_card_attachment.setText(imageFile.getName());
+                                }
+                                requestFile =
+                                        RequestBody.create(
+                                                MediaType.parse(getContentResolver().getType(imageUri)),
+                                                imageFile
+                                        );
                                 //imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 cursor.close();
                             }
                         }
-
+                        return;
                     }
                     break;
             }
@@ -333,7 +431,10 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
     @Override
     public void onFocusChange(View view, boolean b) {
         if(view.getId() == R.id.tv_sponsor_id) {
-            RetrofitUtils.callCheckUserExistApi(this, tv_sponsor_id.getText().toString(), viewModel.registerListener);
+            if(!tv_sponsor_id.getText().toString().equals(""))
+                RetrofitUtils.callCheckUserExistApi(this, tv_sponsor_id.getText().toString(), viewModel.registerListener);
+            else
+                tv_sponsor_name.setText("");
         }else if(view.getId() == R.id.tv_pan_card_no){
             RetrofitUtils.callPanExistApi(this, tv_pan_card_no.getText().toString(), viewModel.registerListener);
         }
@@ -351,6 +452,7 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                 if(type.equals("country")) {
                     country = countryList.get(which).getIsoCode();
                     tv_country.setText(countryList.get(which).getCountry());
+                    viewModel.country = country;
                     showProgressDialog(progressBarMessage);
                     RetrofitUtils.callStateByCountryApi(RegisterActivity.this, countryList.get(which).getIsoCode(), viewModel.registerListener);
                 }else if(type.equals("state")){
@@ -385,6 +487,47 @@ public class RegisterActivity extends BaseActivity implements RegisterListener, 
                 if(cityList != null)
                     showSpinner(cityArray,"city");
 
+            case R.id.radio1:
+                int selectedId = radioGroupOne.getCheckedRadioButtonId();
+
+                // find the radio button by returned id
+                RadioButton radioButton = (RadioButton) findViewById(selectedId);
+
+                Toast.makeText(RegisterActivity.this,
+                        radioButton.getText(), Toast.LENGTH_SHORT).show();
+                tv_sponsor_id.setText("");
+                tv_sponsor_name.setText("");
+                break;
+
+            case R.id.radio2:
+                showProgressDialog(progressBarMessage);
+                RetrofitUtils.callGetAdminId(RegisterActivity.this, viewModel.registerListener);
+
+            case R.id.rd_left:
+                getPositionValue();
+                break;
+
+            case R.id.rd_right:
+                getPositionValue();
+                break;
+
         }
     }
+
+    public void getPositionValue(){
+        int selectedRd = radioGroupTwo.getCheckedRadioButtonId();
+
+        // find the radio button by returned id
+        RadioButton radioPosition = (RadioButton) findViewById(selectedRd);
+        if(selectedRd == R.id.rd_left)
+            positionValue = "1";
+        else
+            positionValue = "2";
+
+        tv_position.setText(positionValue);
+        viewModel.position = positionValue;
+
+    }
+
+
 }

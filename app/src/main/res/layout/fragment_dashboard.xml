@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.emwi_new.auth.RegisterViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ViewClasses.Activities.RegisterActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:padding="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight=".2"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/bluewhite">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/mont_bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/bg_right_bv">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_right_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight=".1"
+                android:background="@drawable/bg_cart_repurchase"
+                android:padding="0dp"
+                android:layout_marginLeft="5dp"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".3"
+                    android:background="@drawable/yellow_cart" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".7"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/tv_ttl_repurchase"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/txt_dash_size"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorBlack"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".5"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/txt_dash_small_size"
+                        android:gravity="center_horizontal|top"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight=".25"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/greenwhite">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/mont_bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/greenwhite">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_right_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight=".2"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/dash_withdraw">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/mont_bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/bg_dash_income">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".45"
+                        android:text="@string/tv_ttl_right_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".55"
+                        android:text="@string/tv_ttl_left_be"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/mont_bold"
+                        android:textColor="@color/colorDashText"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
