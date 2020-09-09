@@ -44,6 +44,16 @@
     <string name="tv_ttl_left_be">TOTAL LEFT BV</string>
     <string name="tv_ttl_right_be">TOTAL RIGHT BV</string>
     <string name="tv_ttl_repurchase">SELF REPURCHASE BV</string>
+    <string name="tv_ttl_weekly_income">Weekly First \n Purchase Income</string>
+    <string name="tv_ttl_royality_income">Royality Income</string>
+    <string name="tv_ttl_matching_income">Weekly Matching Income</string>
+    <string name="tv_ttl_rep_matching_income">Rep. Matching Income</string>
+    <string name="tv_ttl_withdraw">TOTAL WITHDRAW</string>
+    <string name="tv_ttl_income">TOTAL INCOME</string>
+    <string name="tv_ttl_left_bv_rep">Left BV Rep.</string>
+    <string name="tv_ttl_right_bv_rep">Right BV Rep.</string>
+    <string name="tv_ttl_week_left_bv">Week Left BV</string>
+    <string name="tv_ttl_week_right_bv">Week Right BV</string>
 
     <!-- Registration User Errors-->
     <string name="err_full_name">The fullname field is required.</string>

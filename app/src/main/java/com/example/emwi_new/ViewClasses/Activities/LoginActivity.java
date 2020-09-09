@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.emwi_new.R;
 import com.example.emwi_new.auth.AuthListener;
+import com.example.emwi_new.model.DashboardModel;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.utils.AppCommon;
 import com.example.emwi_new.utils.ViewUtils;
@@ -66,6 +67,11 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
 
             }
         });
+    }
+
+    @Override
+    public void onDashboardSuccess(LiveData<DashboardModel> loginResponse) {
+
     }
 
     @Override
