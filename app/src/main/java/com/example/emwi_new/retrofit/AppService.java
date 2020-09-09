@@ -4,6 +4,7 @@ import com.example.emwi_new.model.CountryModel;
 import com.example.emwi_new.model.responsemodel.CheckUserModel;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.model.responsemodel.StateCityModel;
+import com.example.emwi_new.model.DashboardModel;
 
 import java.util.Map;
 
@@ -50,5 +51,8 @@ public interface AppService {
 
     @POST("register")
     Call<LoginResponseModel> userRegister(@Body RequestBody post);
+
+    @GET("userDashboard")
+    Call<DashboardModel> userDashboard();
 
 }

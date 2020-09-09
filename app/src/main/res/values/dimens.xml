@@ -57,6 +57,9 @@
     <dimen name="et_height">40dp</dimen>
     <dimen name="reg_et_height">45dp</dimen>
     <dimen name="dp250">250dp</dimen>
+    <dimen name="txt_ttl_medium_size">18sp</dimen>
+    <dimen name="txt_ttl_dash_size">16sp</dimen>
+    <dimen name="txt_ttl_size">14sp</dimen>
     <dimen name="txt_dash_size">12sp</dimen>
     <dimen name="txt_dash_small_size">10sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

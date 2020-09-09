@@ -6,13 +6,13 @@
     <data>
         <variable
             name="dashviewmodel"
-            type="com.example.emwi_new.viewmodel.DashViewModel" />
+            type="com.example.emwi_new.fragments.DashboardViewModel"/>
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ViewClasses.Activities.RegisterActivity">
+        tools:context=".ViewClasses.Activities.NavigationDrawerActivity">
 
         <ImageView
             android:layout_width="match_parent"
@@ -377,122 +377,122 @@
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight=".13"
-            android:layout_marginTop="@dimen/dp5"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5"
-                android:weightSum="1"
-                android:background="@drawable/backyellow">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight=".13"
+                android:layout_marginTop="@dimen/dp5"
+                android:weightSum="1">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight=".35"
-                    android:background="@android:color/transparent"/>
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/backyellow">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".35"
+                        android:background="@android:color/transparent"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".65"
+                        android:orientation="vertical"
+                        android:layout_gravity="right"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".4"
+                            android:text="@string/tv_ttl_left_bv_rep"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:gravity="center"
+                            android:textSize="@dimen/txt_dash_size"
+                            android:fontFamily="@font/mont_bold"
+                            android:textColor="@color/colorDashText"/>
+
+                        <TextView
+                            android:id="@+id/tv_left_bv_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".2"
+                            android:text="@={``+dashviewmodel.left_bv_rep}"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:gravity="center"
+                            android:textSize="@dimen/txt_dash_size"
+                            android:fontFamily="@font/mont_bold"
+                            android:textColor="@color/colorDashText"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight=".65"
-                    android:orientation="vertical"
-                    android:layout_gravity="right"
-                    android:weightSum="1">
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:background="@drawable/backyellow">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".4"
-                        android:text="@string/tv_ttl_left_bv_rep"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:gravity="center"
-                        android:textSize="@dimen/txt_dash_size"
-                        android:fontFamily="@font/mont_bold"
-                        android:textColor="@color/colorDashText"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".35"
+                        android:background="@android:color/transparent"/>
 
-                    <TextView
-                        android:id="@+id/tv_left_bv_rep"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".2"
-                        android:text="@={``+dashviewmodel.left_bv_rep}"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/dp10"
-                        android:gravity="center"
-                        android:textSize="@dimen/txt_dash_size"
-                        android:fontFamily="@font/mont_bold"
-                        android:textColor="@color/colorDashText"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".65"
+                        android:orientation="vertical"
+                        android:layout_gravity="right"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".4"
+                            android:text="@string/tv_ttl_right_bv_rep"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:gravity="center"
+                            android:textSize="@dimen/txt_dash_size"
+                            android:fontFamily="@font/mont_bold"
+                            android:textColor="@color/colorDashText"/>
+
+                        <TextView
+                            android:id="@+id/tv_right_bv_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".2"
+                            android:text="@={``+dashviewmodel.right_bv_rep}"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/dp10"
+                            android:gravity="center"
+                            android:fontFamily="@font/mont_bold"
+                            android:textSize="@dimen/txt_dash_size"
+                            android:textColor="@color/colorDashText"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5">
+
 
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5"
-                android:weightSum="1"
-                android:background="@drawable/backyellow">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".35"
-                    android:background="@android:color/transparent"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".65"
-                    android:orientation="vertical"
-                    android:layout_gravity="right"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".4"
-                        android:text="@string/tv_ttl_right_bv_rep"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:gravity="center"
-                        android:textSize="@dimen/txt_dash_size"
-                        android:fontFamily="@font/mont_bold"
-                        android:textColor="@color/colorDashText"/>
-
-                    <TextView
-                        android:id="@+id/tv_right_bv_rep"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".2"
-                        android:text="@={``+dashviewmodel.right_bv_rep}"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/dp10"
-                        android:gravity="center"
-                        android:fontFamily="@font/mont_bold"
-                        android:textSize="@dimen/txt_dash_size"
-                        android:textColor="@color/colorDashText"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5">
-
-
-            </LinearLayout>
-
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

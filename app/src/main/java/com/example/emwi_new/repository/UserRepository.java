@@ -1,12 +1,13 @@
 package com.example.emwi_new.repository;
 
-import android.widget.Toast;
+import android.content.Context;
 
 import com.example.emwi_new.auth.RegisterListener;
 import com.example.emwi_new.model.responsemodel.LoginResponseModel;
 import com.example.emwi_new.retrofit.AppService;
 import com.example.emwi_new.retrofit.ServiceGenerator;
 import com.example.emwi_new.utils.AppCommon;
+import com.example.emwi_new.model.DashboardModel;
 
 import java.util.Map;
 
@@ -21,6 +22,9 @@ public class UserRepository {
 
     private MutableLiveData<LoginResponseModel> loginResponse;
     LoginResponseModel loginResponseModel;
+
+    private MutableLiveData<DashboardModel> dashboardResponse;
+    DashboardModel dashResponseModel;
 
     public LiveData<LoginResponseModel> userLogin(Map<String, String> loginMap){
 
@@ -131,4 +135,29 @@ public class UserRepository {
         return loginResponse;
     }
 
+    public LiveData<DashboardModel> getUserDashboard(Context context){
+
+        dashboardResponse = new MutableLiveData<>();
+
+        AppService apiService = ServiceGenerator.createService(AppService.class,AppCommon.getInstance(context).getToken());
+        apiService.userDashboard().enqueue(new Callback<DashboardModel>() {
+            @Override
+            public void onResponse(Call<DashboardModel> call, Response<DashboardModel> response) {
+                if(response.isSuccessful()){
+                    dashResponseModel = response.body();
+                    dashboardResponse.setValue(dashResponseModel);
+                    // todo: save access token is pending
+                }else {
+                    dashResponseModel = response.body();
+                    dashboardResponse.setValue(dashResponseModel);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DashboardModel> call, Throwable t) {
+                //Toast.makeText(UserRepository.this.getClass(), "Please check your internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return dashboardResponse;
+    }
 }
