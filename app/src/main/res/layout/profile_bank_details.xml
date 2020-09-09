@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/small_padding"
+    android:background="@drawable/login_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bank_account_number"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="SBI09456774755"
+                    android:background="@drawable/account_no"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/a_c_holder_name"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Ruchita Ojha"
+                    android:background="@drawable/account_holder"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bank_name"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="State Bank of India"
+                    android:background="@drawable/bank_name"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bank_branch_name"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Manish Nagar"
+                    android:background="@drawable/bank_branch"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/pan_card_number"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Q6757SW7DS"
+                    android:background="@drawable/pan_card"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/bank_ifsc_code"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="SBI2335"
+                    android:background="@drawable/bank_ifsc_code"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ProfileFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_bg">
+
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@id/footer"
+                android:gravity="start"
+                android:padding="@dimen/small_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_info"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_info"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_upload_KYC"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_uploadKYC"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_bank_details"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_bank_details"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_security"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_security"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_contact_info"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_contact_info"
+                            />
+
+                        <Button
+                            android:id="@+id/btn_my_dreams"
+                            style="@style/tv_style_inactivite"
+                            android:layout_weight="1"
+                            android:text="@string/tv_my_dreams"
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_selected_tab"
+                        style="@style/style_selected_tab"
+                        android:text="Info" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_profil_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <include
+                            layout="@layout/profile_info_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_profil_bank_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <include
+                            layout="@layout/profile_bank_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_profil_security"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <include
+                            layout="@layout/profile_security_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_profil_contact_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <include
+                            layout="@layout/profile_contact_info_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_profil_upload_kyc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <include
+                            layout="@layout/profile_upload_kyc_lyt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/footer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_footer"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/footer"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/footer"
+                    android:padding="@dimen/sp5">
+
+                    <Button
+                        android:id="@+id/btn_update"
+                        android:text="Update"
+                        style="@style/style_footer_btn"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/btn_edit"
+                        android:text="Edit"
+                        style="@style/style_footer_btn"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/btn_clear"
+                        android:text="Clear"
+                        style="@style/style_footer_btn"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <!--
+                            <TextView
+                                android:id="@+id/tv_footer"
+                                style="@style/style_footer"
+                                android:text="Update" />
+                -->
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+

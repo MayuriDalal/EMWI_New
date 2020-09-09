@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/small_padding"
+            android:background="@drawable/country"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_country"
+                style="@style/spinner_style" />
+
+            <TextView
+                style="@style/tv_spinner_style"
+                android:text="Country*" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/city"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_city"
+                style="@style/spinner_style" />
+
+            <TextView
+                style="@style/tv_spinner_style"
+                android:text="City*" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/pin_code"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <EditText
+                android:id="@+id/et_pincode"
+                android:hint="Enter pincode"
+                style="@style/et_prf_contact_style" />
+
+            <TextView
+                style="@style/tv_spinner_style"
+                android:text="Pincode*" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/state"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_state"
+                style="@style/spinner_style" />
+
+            <TextView
+                style="@style/tv_spinner_style"
+                android:text="State*" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/postal_address"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_postal_address"
+                style="@style/spinner_style" />
+
+            <TextView
+                style="@style/tv_spinner_style"
+                android:text="Postal Address*" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

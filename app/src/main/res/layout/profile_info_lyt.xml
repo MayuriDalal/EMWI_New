@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/small_padding"
+    android:background="@drawable/login_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/user_id"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="MV757613"
+                    android:background="@drawable/user_id"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/sponsor_id"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="MV791763"
+                    android:background="@drawable/sponsor_id"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/name"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Ruchita Ojha"
+                    android:background="@drawable/name_icon"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/mobile_no"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="9284930934"
+                    android:background="@drawable/mobile_no"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/email"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="user@gmail.com"
+                    android:background="@drawable/mail_icon"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/date_of_birth"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="2020/08/20"
+                    android:background="@drawable/date_of_birth"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/date_of_joining"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="2020/08/20"
+                    android:background="@drawable/date_of_join"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/blood_group"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="A+"
+                    android:background="@drawable/blood_group"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/nominee_name"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Priyanka Jain"
+                    android:background="@drawable/nominee_name"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_padding"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/nominee_relation"
+                    style="@style/profile_info_tv" />
+                <EditText
+                    android:hint="Sister"
+                    android:background="@drawable/nominee_rel"
+                    style="@style/profile_info_et" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/sp10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/sp5"
+            android:background="@drawable/personal_photo"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <TextView
+                android:text="@string/upload_personal_photo"
+                style="@style/style_upload_kyc_tv1" />
+
+            <TextView
+                android:text="@string/note_image_size_is_limited_to_not_greater_than_1mb"
+                style="@style/style_upload_kyc_tv2" />
+
+            <Button
+                android:text="@string/choose_file"
+                style="@style/style_upload_kyc_btn" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/sp5"
+            android:background="@drawable/pan_card_icon"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+            <TextView
+                android:text="@string/upload_pan_card"
+                style="@style/style_upload_kyc_tv1" />
+
+            <TextView
+                android:text="@string/note_image_size_is_limited_to_not_greater_than_1mb"
+                style="@style/style_upload_kyc_tv2" />
+
+            <Button
+                android:text="@string/choose_file"
+                style="@style/style_upload_kyc_btn" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/sp5"
+            android:background="@drawable/adhar_card"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+            <TextView
+                android:text="@string/upload_aadhar_card"
+                style="@style/style_upload_kyc_tv1" />
+
+            <TextView
+                android:text="@string/note_image_size_is_limited_to_not_greater_than_1mb"
+                style="@style/style_upload_kyc_tv2" />
+
+            <Button
+                android:text="@string/choose_file"
+                style="@style/style_upload_kyc_btn" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/sp5"
+            android:background="@drawable/address_proof"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <TextView
+                android:text="@string/upload_address_proof"
+                style="@style/style_upload_kyc_tv1" />
+
+            <TextView
+                android:text="@string/note_image_size_is_limited_to_not_greater_than_1mb"
+                style="@style/style_upload_kyc_tv2" />
+
+            <Button
+                android:text="@string/choose_file"
+                style="@style/style_upload_kyc_btn" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/sp5"
+            android:background="@drawable/gst_icon"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
+
+            <TextView
+                android:text="@string/gst_number"
+                style="@style/style_upload_kyc_tv1"
+                android:layout_marginBottom="@dimen/sp20"/>
+
+            <Button
+                android:text="@string/choose_file"
+                style="@style/style_upload_kyc_btn"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

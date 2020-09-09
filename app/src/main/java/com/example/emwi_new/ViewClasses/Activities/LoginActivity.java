@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.emwi_new.ViewClasses.Activities.ui.AppNavigationActivity;
 import com.example.emwi_new.auth.AuthViewModel;
 import com.example.emwi_new.databinding.ActivityLoginBinding;
 
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements AuthListener {
                 //save access token
                 AppCommon.getInstance(LoginActivity.this);
                 AppCommon.setToken(loginResponse.getValue().getData().getAccessToken());
-                Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                Intent intent = new Intent(LoginActivity.this, AppNavigationActivity.class);
                 startActivity(intent);
                 finish();
 
